@@ -1,0 +1,68 @@
+server:
+  port: 15000
+
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/YRSKui/microservice-config-repo.git
+          default-label: master
+          search-paths: '{application}'
+          clone-on-start: true
+          timeout: 10
+        default-application-name: application
+        default-profile: dev
+    bus:
+      enabled: true
+      refresh:
+        enabled: true
+      env:
+        enabled: true
+    stream:
+      bindings:
+        springCloudBusInput:
+          destination: springCloudBus
+          group: config-server
+        springCloudBusOutput:
+          destination: springCloudBus
+      rabbit:
+        bindings:
+          springCloudBusOutput:
+            producer:
+              routing-key-expression: "'springCloudBus'"
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+  profiles:
+    active: dev
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: "${spring.cloud.client.ip-address}:${server.port}"
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
+  client:
+    service-url:
+      defaultZone: "http://EurekaApplication18000:18000/eureka/,http://EurekaApplication18001:18001/eureka/,http://EurekaApplication18002:18002/eureka/"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    busrefresh:
+      enabled: true
+    busenv:
+      enabled: true
+  security:
+    enabled: false 

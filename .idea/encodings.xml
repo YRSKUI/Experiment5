@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Config_Service_15000/Config_Service_15001/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Config_Service_15000/Config_Service_15001/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Config_Service_15000/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Config_Service_15000/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Config_Service_15001/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Config_Service_15001/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Config_Service_15002/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Config_Service_15002/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Config_Service_15010/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Config_Service_15010/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Config_Service_15020/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Config_Service_15020/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Eureka_Server_18000/Eureka_Server_18002/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Eureka_Server_18000/Eureka_Server_18002/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Eureka_Server_18000/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Eureka_Server_18000/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Eureka_Server_18001/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Eureka_Server_18001/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Eureka_Server_18002/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Eureka_Server_18002/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Gateway_Service_12000/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Gateway_Service_12000/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Service_Consumer_16000/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Service_Consumer_16000/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Service_Consumer_16001/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Service_Consumer_16001/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Service_Provider_11000/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Service_Provider_11000/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Service_Provider_11001/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Service_Provider_11001/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

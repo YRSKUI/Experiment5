@@ -1,0 +1,17 @@
+server:
+  port: 18001
+spring:
+  application:
+    name: "Eureka-Service"
+eureka:
+  instance:
+    hostname: "EurekaApplication18001"
+  client:
+    registerWithEureka: false
+    fetchRegistry: true
+#    关闭自我保护模式，即不保护注册表中的信息，便于调试 
+    serviceUrl:
+      defaultZone: "http://EurekaApplication18000:18000/eureka/,
+      http://EurekaApplication18002:18002/eureka/"
+  server:
+    enable-self-preservation: false

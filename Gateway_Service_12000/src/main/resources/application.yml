@@ -1,0 +1,101 @@
+server:
+  port: 12000
+spring:
+  application:
+    name: "gateway-service"
+  cloud:
+    gateway:
+      routes:
+        # 路由1: 服务提供者路由
+        - id: provider-service-route
+          uri: lb://provider-service
+          predicates:
+            - Path=/provider/**
+          filters:
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: provider-service
+                fallbackUri: forward:/fallback/provider
+        
+        # 路由2: 服务消费者路由
+        - id: consumer-service-route
+          uri: lb://consumer-service
+          predicates:
+            - Path=/consumer/**
+          filters:
+            - StripPrefix=1
+            
+        # 路由3: 用户服务路由（直接访问provider的user接口）
+        - id: user-service-route
+          uri: lb://provider-service
+          predicates:
+            - Path=/user/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: provider-service
+                fallbackUri: forward:/fallback/user
+            - name: Retry
+              args:
+                retries: 3
+                series: SERVER_ERROR
+        
+        # 路由4: 购物车服务路由（直接访问consumer的cart接口）
+        - id: cart-service-route
+          uri: lb://consumer-service
+          predicates:
+            - Path=/cart/**
+            
+        # 路由5: 负载均衡测试路由
+        - id: load-balance-test-route
+          uri: lb://provider-service
+          predicates:
+            - Path=/loadBalanceTest/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: provider-service
+                fallbackUri: forward:/fallback/loadbalance
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+# Resilience4j 容错机制配置
+resilience4j:
+  # 熔断器配置
+  circuitbreaker:
+    instances:
+      provider-service:
+        failure-rate-threshold: 50                    # 失败率阈值50%
+        sliding-window-size: 10                       # 滑动窗口大小10个请求
+        minimum-number-of-calls: 5                    # 最小调用次数5次
+        wait-duration-in-open-state: 30s              # 熔断器打开等待时间30秒
+        permitted-number-of-calls-in-half-open-state: 3   # 半开状态允许的调用次数
+        register-health-indicator: true               # 注册健康检查
+  
+  # 限流器配置  
+  ratelimiter:
+    instances:
+      provider-service:
+        limit-for-period: 10        # 每个周期允许10个请求
+        limit-refresh-period: 1s    # 刷新周期1秒
+        timeout-duration: 0s        # 等待时间0秒（立即拒绝）
+
+  # 舱壁隔离配置
+  bulkhead:
+    instances:
+      provider-service:
+        max-concurrent-calls: 5     # 最大并发调用数5个
+        max-wait-duration: 1s       # 最大等待时间1秒
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: "${spring.cloud.client.ip-address}:${server.port}"
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
+  client:
+    service-url:
+      defaultZone: "http://EurekaApplication18000:18000/eureka/"

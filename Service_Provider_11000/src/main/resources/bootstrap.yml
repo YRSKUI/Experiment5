@@ -1,0 +1,65 @@
+spring:
+  application:
+    name: provider-service-11000
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-service
+      name: provider-service-11000
+      profile: dev
+      label: master
+      retry:
+        initial-interval: 2000
+        max-attempts: 6
+        max-interval: 10000
+        multiplier: 1.2
+      fail-fast: false
+      request-connect-timeout: 30000
+      request-read-timeout: 30000
+    bus:
+      enabled: true
+      refresh:
+        enabled: true
+      env:
+        enabled: true
+    stream:
+      bindings:
+        springCloudBusInput:
+          destination: springCloudBus
+          group: provider-service-11000
+        springCloudBusOutput:
+          destination: springCloudBus
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+  profiles:
+    active: dev
+
+eureka:
+  client:
+    service-url:
+      defaultZone: "http://EurekaApplication18000:18000/eureka/,http://EurekaApplication18001:18001/eureka/,http://EurekaApplication18002:18002/eureka/"
+    registry-fetch-interval-seconds: 5
+    initial-instance-info-replication-interval-seconds: 5
+
+server:
+  port: 11000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    refresh:
+      enabled: true
+    busrefresh:
+      enabled: true
+  security:
+    enabled: false 
